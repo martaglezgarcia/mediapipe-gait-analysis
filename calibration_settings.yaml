@@ -1,0 +1,12 @@
+---
+ camera0: 0
+ camera1: 2
+ frame_width: 1280
+ frame_height: 720
+ view_resize: 2
+ stereo_cal_frames: 10
+ mono_cal_frames: 10
+ board_size: 0
+ board_rows: 7
+ board_cols: 7
+ timer: 50  # 5 seconds
