@@ -1,1 +1,1 @@
-# mp-gait
+# mediapipe-gait-analysis
