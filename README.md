@@ -2,6 +2,7 @@
 
 > This branch from the mediapipe-gait-analysis repository includes all the files needed to perform a stereocalibration of two cameras prior to the 3D reconstruction using OpenCV and a checkerboard pattern.
 > 
+***
 
 <aside>
 ❗ This code follows the steps provided by https://github.com/TemugeB/python_stereo_camera_calibrate
