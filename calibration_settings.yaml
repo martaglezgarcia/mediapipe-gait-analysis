@@ -1,0 +1,12 @@
+---
+ camera0: 0
+ camera1: 2
+ frame_width: 1280
+ frame_height: 720
+ view_resize: 2
+ stereo_cal_frames: 10
+ mono_cal_frames: 5
+ square_size: 3 # square board size in cm
+ board_rows: 6
+ board_cols: 7
+ timer: 50  
