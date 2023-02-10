@@ -1,0 +1,25 @@
+---
+- calculator: "PoseCalculator"
+  options:
+    coordinate_system:
+      origin:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      orientation:
+        rotation_matrix:
+          - 1.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 1.0
+          - 0.0
+          - 0.0
+          - 0.0
+          - 1.0
+
+# This YAML file specifies that the PoseCalculator calculator
+# is being used, with the coordinate_system
+# section specifying the position of the origin with the x, y, and z
+# values and the orientation of the positive x, y, and z axes with the rotation_matrix values.
+
