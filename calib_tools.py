@@ -230,6 +230,8 @@ def get_intrinsics(cam_path):
     ret, mtx, dist, rvecs, tvecs = cv.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
     new_mtx, roi = cv.getOptimalNewCameraMatrix(mtx, dist, img_shape, 1, img_shape)
 
+    new_mtx = np.round(new_mtx, decimals=3)
+
     print('Individual camera rmse: ', ret)  # should be less than 0.3
 
     return new_mtx, dist, rvecs, tvecs
@@ -263,7 +265,7 @@ def draw_keypoints_and_match(img1, img2):
     # Note : Can use sift too to improve feature extraction, but it can be patented again so it could brake the code in future!
     # Note: ORB is not scale independent so number of keypoints depend on scale
     # Initiate ORB detector
-    orb = cv.ORB_create(nfeatures=10000)
+    orb = cv.ORB_create(nfeatures=500)
     # find the keypoints and descriptors with ORB
     kp1, des1 = orb.detectAndCompute(img1, None)
     kp2, des2 = orb.detectAndCompute(img2, None)
@@ -290,7 +292,7 @@ def draw_keypoints_and_match(img1, img2):
     if not os.path.exists('images'):
         os.mkdir('images')
 
-    savename = os.path.join('images', 'images_with matching keypoints.png')
+    savename = os.path.join('images', 'images_with_matching_keypoints.png')
     cv.imwrite(savename, img_with_keypoints)
 
     # Getting x,y coordinates of the matches
@@ -607,6 +609,7 @@ def save_rectification(H1, H2):
 
     print('Rectification parameters correctly saved!')
 
+
 def drawlines(img1src, img2src, lines, pts1src, pts2src):
     """This function is used to visualize the epilines on the images
         img1 - image on which we draw the epilines for the points in img2
@@ -621,10 +624,75 @@ def drawlines(img1src, img2src, lines, pts1src, pts2src):
         x0, y0 = map(int, [0, -r[2] / r[1]])
         x1, y1 = map(int, [c, -(r[2] + r[0] * c) / r[1]])
         img1color = cv.line(img1color, (x0, y0), (x1, y1), color, 1)
-        img1color = cv.circle(img1color, tuple(pt1), 5, color, -1)
-        img2color = cv.circle(img2color, tuple(pt2), 5, color, -1)
+        img1color = cv.circle(img1color, tuple(pt1), 3, color, -1)
+        img2color = cv.circle(img2color, tuple(pt2), 3, color, -1)
 
     return img1color, img2color
+
+#____________________DISPARITY MAP__________________________
+
+def sum_of_sq_diff(pixel_vals_1, pixel_vals_2):
+    """Sum of squared distances for Correspondence"""
+    if pixel_vals_1.shape != pixel_vals_2.shape:
+        return -1
+
+    return np.sum((pixel_vals_1 - pixel_vals_2)**2)
+
+
+def block_comparison(y, x, block_left, right_array, block_size, x_search_block_size, y_search_block_size):
+    """Block comparison function used for comparing windows on left and right images and find the minimum value ssd match the pixels"""
+
+    # Get search range for the right image
+    x_min = max(0, x - x_search_block_size)
+    x_max = min(right_array.shape[1], x + x_search_block_size)
+    y_min = max(0, y - y_search_block_size)
+    y_max = min(right_array.shape[0], y + y_search_block_size)
+
+    first = True
+    min_ssd = None
+    min_index = None
+
+    for y in range(y_min, y_max):
+        for x in range(x_min, x_max):
+            block_right = right_array[y: y + block_size, x: x + block_size]
+            ssd = sum_of_sq_diff(block_left, block_right)
+            if first:
+                min_ssd = ssd
+                min_index = (y, x)
+                first = False
+            else:
+                if ssd < min_ssd:
+                    min_ssd = ssd
+                    min_index = (y, x)
+
+    return min_index
+
+
+def get_disparity(img1, img2):
+    block_size = 15  # 15
+    x_search_block_size = 50  # 50
+    y_search_block_size = 1
+    h, w = img1.shape
+    disparity_map = np.zeros((h, w))
+
+    for y in range(block_size, h - block_size):
+        for x in range(block_size, w - block_size):
+            block_left = img1[y:y + block_size, x:x + block_size]
+            index = block_comparison(y, x, block_left, img2, block_size, x_search_block_size, y_search_block_size)
+            disparity_map[y, x] = abs(index[1] - x)
+
+    disparity_map_unscaled = disparity_map.copy()
+
+    # Scaling the disparity map
+    max_pixel = np.max(disparity_map)
+    min_pixel = np.min(disparity_map)
+
+    for i in range(disparity_map.shape[0]):
+        for j in range(disparity_map.shape[1]):
+            disparity_map[i][j] = int((disparity_map[i][j] * 255) / (max_pixel - min_pixel))
+
+    disparity_map_scaled = disparity_map
+    return disparity_map_unscaled, disparity_map_scaled
 
 
 

@@ -17,26 +17,29 @@ if __name__ == '__main__':
 
     #___________________ CALIBRATION_______________________
     # STEP 1: GET CALIBRATION FRAMES FOR INDIVIDUAL CAMERAS
-    take_mono_frames('camera0')
-    take_mono_frames('camera1')
+    #take_mono_frames('camera0')
+    #take_mono_frames('camera1')
 
     # STEP 2: ESTIMATE AND SAVE INTRINSIC PARAMETERS FOR BOTH CAMERAS
-    K1, dist1, _, _ = get_intrinsics('./single_frames/camera0*')
+    K1, _, _, _ = get_intrinsics('./single_frames/camera0*')
     print('Intrinsic parameters')
     print("K matrix for camera0", K1)
     print("==" * 20, '\n')
 
-    K2, dist2, _, _ = get_intrinsics('./single_frames/camera1*')
+    K2, _, _, _ = get_intrinsics('./single_frames/camera0*')
     print("K matrix for camera1", K2)
     print("==" * 20, '\n')
 
-    save_intrinsics(K1, dist1, 'camera0')
-    save_intrinsics(K2, dist2, 'camera1')
+    dist1 = np.array([0., 0., 0., 0., 0.]).reshape((1, 5))
+    dist2 = np.array([0., 0., 0., 0., 0.]).reshape((1, 5))
+
+    save_intrinsics('camera0', K1, dist1)
+    save_intrinsics('camera1', K2, dist2)
     print('Intrinsic parameters correctly saved!')
     print('Calibration for individual cameras completed.')
 
     # STEP 3: TAKE 1 STEREO-FRAME
-    take_stereo_frames('camera0', 'camera1')
+    #take_stereo_frames('camera0', 'camera1')
 
     # STEP 4: CALCULATE FUNDAMENTAL AND ESSENTIAL MATRICES
 
@@ -44,8 +47,10 @@ if __name__ == '__main__':
     img1 = cv.imread("./stereo_frames/camera0_1.png", 0)
     img2 = cv.imread("./stereo_frames/camera1_1.png", 0)
 
-    width = int(img1.shape[1])
-    height = int(img1.shape[0])
+    # lo que hace que le cueste es el *1 en vez de *0.3
+    # con 0.5 va bien pero no más
+    width = int(img1.shape[1] * 0.5)
+    height = int(img1.shape[0] * 0.5)
 
     # make images same size
     img1 = cv.resize(img1, (width, height), interpolation=cv.INTER_AREA)
@@ -75,11 +80,13 @@ if __name__ == '__main__':
             print()
             print("Translation", t)
             print("==" * 20, '\n')
+
             pts1 = np.int32(list_kp1)
             pts2 = np.int32(list_kp2)
 
             # ____________________________RECTIFICATION________________________________
-            rectified_pts1, rectified_pts2, img1_rectified, img2_rectified, H1, H2 = rectification(img1, img2, pts1, pts2, F)
+            rectified_pts1, rectified_pts2, img1_rectified, img2_rectified, H1, H2 = rectification(img1, img2, pts1,
+                                                                                                   pts2, F)
             print('Rectified images correctly saved!')
             break
         except Exception as e:
@@ -115,12 +122,13 @@ if __name__ == '__main__':
     savename2 = os.path.join('images', 'rectified_2_with_epilines.png')
     cv.imwrite(savename2, img3)
 
-    # STEP 6: CHECK CALIBRATION
-    # note - Camera 0 defines the world-space origin
-    R0 = np.eye(3, dtype=np.float32)
-    t0 = np.array([0., 0., 0.]).reshape((3, 1))
+    '''
+    # STEP 6: DISPARITY MAP
+    disparity_map_unscaled, disparity_map_scaled = get_disparity(img1_rectified, img2_rectified)
 
-    camera0_data = [K1, dist1, R0, t0]
-    camera1_data = [K2, dist2, R, t]
-    check_calibration('camera0', camera0_data, 'camera1', camera1_data, _zshift=60.)
-
+    plt.figure(1)
+    plt.title('Disparity Map Grayscale')
+    plt.imshow(disparity_map_scaled, cmap='gray')
+    plt.savefig('./images/disparity_map.png')
+    print('Disparity map correctly saved!')
+    '''
