@@ -126,7 +126,6 @@ This function first uses an ORB detector to find keypoints in the images and a B
 
 ![Images with matching keypoints](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/images_with_matching_keypoints.png?raw=true)
 
-Images with matching keypoints
 
 (ii) *RANSAC_F_matrix*
 
