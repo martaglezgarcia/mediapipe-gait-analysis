@@ -87,11 +87,7 @@ $$
 
 In this step, the OpenCV function *drawChessboardCorners* is a corner detection algorithm that will identify the checkerboard pattern. For each image taken, the program will display it with the estimations performed. The user should press “s” to skip the image if the pattern is not well defined or press any other key to take into account the measurement of the image displayed. 
 
-![2Untitled.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/2Untitled.png?raw=true)
-
-![Untitled.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/Untitled.png?raw=true)
-
-![1Untitled.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/1Untitled.png?raw=true)
+![checkerboard.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/checkerboard.png?raw=true)
 
 Once the user has gone through all the images stored where the checkerboard pattern was identified, the *calibrateCamera* OpenCV function will return the intrinsic matrix K of the camera.
 
@@ -116,13 +112,7 @@ Show the checkerboard to both cameras and press the “s” key. The procedure i
 
 The resulting images will be saved on a new folder named “stereo_frames” under the names “camera0_1.png” and “camera1_1.png”
 
-![Image 1 - camera0_1.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/camera0_1.png?raw=true)
-
-Image 1 - camera0_1.png
-
-![Image 2 - camera1_1.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/camera1_1.png?raw=true)
-
-Image 2 - camera1_1.png
+![stereo images](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/stereo_images.png?raw=true)
 
 ### STEP 4 - Calculate $F$, $E$, $R$, and $t$ matrices
 
@@ -162,17 +152,11 @@ $$
 x'Fx = 0
 $$
 
-![Untitled](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/Untitled%201.png)
+![Untitled](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/Untitled.png?raw=true)
 
 The function rectification gives as a result the list of rectified matching points and the two images rectified.
 
-![Rectified Image 1](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/rectified_1.png)
-
-Rectified Image 1
-
-![Rectified Image 2](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/rectified_2.png)
-
-Rectified Image 2
+![Rectified](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/rectified.png?raw=true)
 
 Finally, the extrinsic parameters and the homography matrices for the rectification are saved on the “camera_parameters” folder. Camera0 is set to be the world coordinate origin, thus its rotation matrix will be an 3x3 identity matrix, and its translation vector will be a 3x1 zero-vector.
 
@@ -200,14 +184,8 @@ H2:
 
 ### STEP 6: COMPUTE EPILINES AND SAVE IMAGES
 
-![Rectified Image 1 with epilines](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/rectified_1_with_epilines.png)
-
-Rectified Image 1 with epilines
-
-![Rectified Image 2 with epilines](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/rectified_2_with_epilines.png)
-
-Rectified Image 2 with epilines
+![Epilines](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/epilines.png?raw=true)
 
 ### STEP 7: DISPARITY MAP AND DEPTH COMPUTATION
 
-![Untitled](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/Untitled%202.png)
+![Untitled](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/Untitled%202.png?raw=true)
