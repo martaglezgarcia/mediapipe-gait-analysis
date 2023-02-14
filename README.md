@@ -151,7 +151,7 @@ $$
 x'Fx = 0
 $$
 
-![Untitled](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/Untitled.png?raw=true)
+![Untitled](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README_images/Untitled%201.png?raw=true)
 
 The function rectification gives as a result the list of rectified matching points and the two images rectified.
 
