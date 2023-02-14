@@ -6,9 +6,9 @@
 <aside>
 ❗ This repository is based on this two repositories:
 
-   [https://github.com/TemugeB/python_stereo_camera_calibrate](https://github.com/TemugeB/python_stereo_camera_calibrate)
+[https://github.com/TemugeB/python_stereo_camera_calibrate](https://github.com/TemugeB/python_stereo_camera_calibrate)
 
-   [https://github.com/savnani5/Depth-Estimation-using-Stereovision](https://github.com/savnani5/Depth-Estimation-using-Stereovision)
+[https://github.com/savnani5/Depth-Estimation-using-Stereovision](https://github.com/savnani5/Depth-Estimation-using-Stereovision)
 
 </aside>
 
@@ -87,11 +87,11 @@ $$
 
 In this step, the OpenCV function *drawChessboardCorners* is a corner detection algorithm that will identify the checkerboard pattern. For each image taken, the program will display it with the estimations performed. The user should press “s” to skip the image if the pattern is not well defined or press any other key to take into account the measurement of the image displayed. 
 
-![[2Untitled.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/tree/cal%2Bmp/README%20images/2Untitled.png)](https://github.com/martaglezgarcia/mediapipe-gait-analysis/blob/cal+mp/README%20images/1Untitled.png?raw=true)
+![2Untitled.png](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/2Untitled.png)
 
-![Untitled.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/tree/cal%2Bmp/README%20images/Untitled.png)
+![Untitled.png](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/Untitled.png)
 
-![1Untitled.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/tree/cal%2Bmp/README%20images/1Untitled.png)
+![1Untitled.png](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/1Untitled.png)
 
 Once the user has gone through all the images stored where the checkerboard pattern was identified, the *calibrateCamera* OpenCV function will return the intrinsic matrix K of the camera.
 
@@ -116,11 +116,11 @@ Show the checkerboard to both cameras and press the “s” key. The procedure i
 
 The resulting images will be saved on a new folder named “stereo_frames” under the names “camera0_1.png” and “camera1_1.png”
 
-![Image 1 - camera0_1.png](README images/camera0_1.png)
+![Image 1 - camera0_1.png](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/camera0_1.png)
 
 Image 1 - camera0_1.png
 
-![Image 2 - camera1_1.png](README images/camera1_1.png)
+![Image 2 - camera1_1.png](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/camera1_1.png)
 
 Image 2 - camera1_1.png
 
@@ -134,7 +134,7 @@ The program will now call out different functions from the *calib_tools.py* file
 
 This function first uses an ORB detector to find keypoints in the images and a Brute Force based matcher to find their best matches. Then draws the keypoints and saves the image with matching keypoints in a newly created folder “images”. The output of this function is a list of corresponding keypoints for the input images
 
-![Images with matching keypoints](README images/images_with_matching_keypoints.png)
+![Images with matching keypoints](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/images_with_matching_keypoints.png)
 
 Images with matching keypoints
 
@@ -162,15 +162,15 @@ $$
 x'Fx = 0
 $$
 
-![Untitled](README images/Untitled%201.png)
+![Untitled](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/Untitled%201.png)
 
 The function rectification gives as a result the list of rectified matching points and the two images rectified.
 
-![Rectified Image 1](README images/rectified_1.png)
+![Rectified Image 1](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/rectified_1.png)
 
 Rectified Image 1
 
-![Rectified Image 2](README images/rectified_2.png)
+![Rectified Image 2](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/rectified_2.png)
 
 Rectified Image 2
 
@@ -200,14 +200,14 @@ H2:
 
 ### STEP 6: COMPUTE EPILINES AND SAVE IMAGES
 
-![Rectified Image 1 with epilines](README images/rectified_1_with_epilines.png)
+![Rectified Image 1 with epilines](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/rectified_1_with_epilines.png)
 
 Rectified Image 1 with epilines
 
-![Rectified Image 2 with epilines](README images/rectified_2_with_epilines.png)
+![Rectified Image 2 with epilines](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/rectified_2_with_epilines.png)
 
 Rectified Image 2 with epilines
 
 ### STEP 7: DISPARITY MAP AND DEPTH COMPUTATION
 
-![Untitled](README images/Untitled%202.png)
+![Untitled](README%20mediapipe-gait-analysis%20f58cc3df26074dae86da883cd67149e1/Untitled%202.png)
