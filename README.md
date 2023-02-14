@@ -87,11 +87,11 @@ $$
 
 In this step, the OpenCV function *drawChessboardCorners* is a corner detection algorithm that will identify the checkerboard pattern. For each image taken, the program will display it with the estimations performed. The user should press “s” to skip the image if the pattern is not well defined or press any other key to take into account the measurement of the image displayed. 
 
-![2Untitled.png](README images/2Untitled.png)
+![2Untitled.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/tree/cal%2Bmp/README%20images/2Untitled.png)
 
-![Untitled.png](README images/Untitled.png)
+![Untitled.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/tree/cal%2Bmp/README%20images/Untitled.png)
 
-![1Untitled.png](README images/1Untitled.png)
+![1Untitled.png](https://github.com/martaglezgarcia/mediapipe-gait-analysis/tree/cal%2Bmp/README%20images/1Untitled.png)
 
 Once the user has gone through all the images stored where the checkerboard pattern was identified, the *calibrateCamera* OpenCV function will return the intrinsic matrix K of the camera.
 
