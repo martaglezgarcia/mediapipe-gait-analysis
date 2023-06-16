@@ -17,18 +17,9 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(geometry_msgs REQUIRED)
-find_package(std_msgs REQUIRED)
-
-find_package(rosidl_default_generators REQUIRED)
-
-rosidl_generate_interfaces(${d2w_interfaces}
-  "msg/GaitSetpoints.msg"
-  "msg/PoseMsg.msg"
-  "msg/SkeletonPoints.msg"
-  DEPENDENCIES geometry_msgs
-  DEPENDENCIES std_msgs
-  )
+# uncomment the following section in order to fill in
+# further dependencies manually.
+# find_package(<dependency> REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
