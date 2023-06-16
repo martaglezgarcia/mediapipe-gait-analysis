@@ -22,7 +22,7 @@ find_package(std_msgs REQUIRED)
 
 find_package(rosidl_default_generators REQUIRED)
 
-rosidl_generate_interfaces(${PROJECT_NAME}
+rosidl_generate_interfaces(${d2w_interfaces}
   "msg/GaitSetpoints.msg"
   "msg/PoseMsg.msg"
   "msg/SkeletonPoints.msg"
