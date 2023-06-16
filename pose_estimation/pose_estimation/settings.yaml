@@ -1,0 +1,12 @@
+---
+ camera0: 1 
+ camera1: 2
+ frame_width: 1920
+ frame_height: 1080
+ view_resize: 2
+ mono_cal_frames: 40
+ stereo_cal_frames: 40
+ cooldown: 100
+ square_size: 36 # square board size in mm
+ board_rows: 10
+ board_cols: 7

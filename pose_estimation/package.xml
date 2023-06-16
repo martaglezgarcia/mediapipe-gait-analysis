@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>pose_estimation</name>
+  <version>1.0.0</version>
+  <description>Pose estimation and gait analysis package</description>
+  <maintainer email="glezgarmarta@gmail.com">Marta</maintainer>
+  <license>Apache License 2.0</license>
+
+  <!-- Dependencies for main code -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>mediapipe</build_depend>
+  <build_depend>numpy</build_depend>
+  <build_depend>yaml</build_depend>
+  <build_depend>time</build_depend>
+  <build_depend>scipy</build_depend>
+  <build_depend>matplotlib</build_depend>
+  <build_depend>openpyxl</build_depend>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <!-- Dependencies for custom messages -->
+  <exec_depend>d2w_interfaces</exec_depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
