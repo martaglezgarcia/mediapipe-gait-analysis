@@ -214,3 +214,4 @@ This module diagram shows the folders that running this program will create in t
 This project was developed for the Biomedical Engineering degree Final Bachelor’s Thesis of Marta González García at Universidad Carlos III de Madrid (UC3M) in collaboration with CSIC.
 
   - :email: <a href="glezgarmarta@gmail.com">glezgarmarta@gmail.com</a>
+  - :page_facing_up: <a href="https://dialnet.unirioja.es/servlet/articulo?codigo=9586877">Conference Paper in Simposio de Robótica, Bioingeniería y Visión por Computador (2024) </a>
